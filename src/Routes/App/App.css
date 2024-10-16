@@ -9,8 +9,7 @@ body {
 }
 
 body.app-background {
-  background: linear-gradient(90deg, rgb(41, 41, 41) 0%, rgba(82, 150, 253, 0.664) 50%, rgba(255, 255, 255, 0.274) 100%);;
- 
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.733) 0%, rgba(82, 85, 253, 0.664) 50%, rgba(0, 0, 0, 0.637) 100%);
   
   
 }
