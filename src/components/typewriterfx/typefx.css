@@ -1,0 +1,41 @@
+h1{
+    font-size: 1.5rem; 
+    color: #ffffff; 
+    background: none;
+    z-index: 100;
+    opacity: 1;
+    
+  }
+  @media (min-width: 768px) {
+    body {
+      padding: 2rem;
+    }
+  
+    h1{
+      font-size: 1.3em;
+    }
+ 
+  
+    .subtitle {
+      font-size: 1.2rem;
+      color: #cccccc; 
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    #root {
+      max-width: 1280px;
+      z-index: -100;
+      position: relative;
+    }
+  
+    h1{
+      font-size: 1.5em;
+    }
+  
+    
+  
+    .subtitle {
+      font-size: 1.5rem;
+    }
+  }

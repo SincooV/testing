@@ -1,0 +1,149 @@
+:root {
+  --primary-color: rgba(255, 255, 255, 1);
+  --highlight-color: rgba(109, 168, 255, 1);
+  --background-color: rgba(0, 0, 0, 0.719);
+  --background-fade-color: rgba(0, 0, 0, 0.671);
+  --shadow-color: rgba(255, 255, 255, 0.555);
+  --text-color: rgb(255, 255, 255);
+  --subtitle-color: rgba(255, 255, 255, 0.555);
+  --shine-animation-color: rgba(255, 255, 255, 1);
+  --shine-animation-highlight: rgba(109, 168, 255, 1);
+  --star-gradient: linear-gradient(90deg, rgba(255, 255, 255, 0.397) 0%, rgba(255, 204, 109, 0.863) 50%, rgba(255, 255, 255, 0.637) 100%);
+  --star-box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+  --eclipse-box-shadow: 0 0 40px var(--shadow-color);
+  --eclipse-box-shadow-large: 0 0 60px var(--shadow-color);
+  --fade-in-duration: 1.5s;
+  --zoom-in-duration: 1.5s;
+  --falling-animation-duration: 15s;
+  --title-font-size-mobile: 2rem;
+  --title-font-size-desktop: 2.5rem;
+  --subtitle-font-size-mobile: 0.8rem;
+  --subtitle-font-size-desktop: 1rem;
+  --subtitle-font-size-large: 1.2rem;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--star-gradient);
+}
+
+.eclipse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, var(--background-color) 0%, var(--background-fade-color) 70%);
+  border-radius: 50%;
+  box-shadow: var(--eclipse-box-shadow);
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.stars {
+  background-color: transparent;
+  color: transparent;
+}
+
+.fade-in {
+  opacity: 1;
+  animation: fadeIn var(--fade-in-duration) forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+
+
+.highlight {
+  background: linear-gradient(90deg, var(--shine-animation-color) 0%, var(--shine-animation-highlight) 50%, var(--shine-animation-color) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: white;
+  animation: shine 3s ease-in-out infinite;
+}
+
+
+.background-animations {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.constellations {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: transparent;
+  opacity: 0.3;
+}
+
+@keyframes zoom-in {
+  0% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+.eclipse-container {
+  animation: zoom-in var(--zoom-in-duration) ease-in-out forwards;
+}
+
+.no-animation {
+  animation: none;
+}
+
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--star-gradient);
+  border-radius: 50%;
+  transition: top 0.3s ease, left 0.3s ease;
+  box-shadow: var(--star-box-shadow);
+  animation: falling linear infinite;
+}
+
+@keyframes falling {
+  0% {
+    transform: translateY(-100vh);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+
+@media (min-width: 481px) {
+  
+}
+
+@media (min-width: 769px) {
+  .eclipse {
+    width: 30vw;
+    height: 30vw;
+    max-width: 250px;
+    max-height: 250px;
+    box-shadow: var(--eclipse-box-shadow-large);
+  }
+
+  
+}

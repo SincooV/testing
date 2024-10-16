@@ -1,0 +1,18 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --my-gradient: linear-gradient(90deg, rgb(41, 41, 41) 0%, rgba(109, 167, 255, 0.664) 50%, rgb(41, 41, 41) 100%);
+  color-scheme: light dark;
+  color: rgb(255, 255, 255);
+
+
+  
+}
+::selection {
+  color: rgb(105, 105, 105);
+  background: rgb(161, 226, 238);
+}
+
+
+@media (prefers-color-scheme: light) {
+
+}

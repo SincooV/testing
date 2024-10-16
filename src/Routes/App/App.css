@@ -1,0 +1,68 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0; 
+  box-sizing: border-box;
+}
+
+body.app-background {
+  background: linear-gradient(90deg, rgb(41, 41, 41) 0%, rgba(82, 150, 253, 0.664) 50%, rgba(255, 255, 255, 0.274) 100%);;
+ 
+  
+  
+}
+
+
+#root {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+  
+}
+
+.logo {
+  width: 100px;
+  margin: 0 auto;
+  transition: filter 0.3s ease-in-out;
+  
+}
+
+
+
+
+
+
+
+@media (min-width: 768px) {
+  body {
+    padding: rem;
+  }
+
+  .logo {
+    width: 150px;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    color: #cccccc; 
+  }
+}
+
+@media (min-width: 1024px) {
+  #root {
+    max-width: 1280px;
+  }
+
+  .logo {
+    width: 200px;
+  }
+
+
+
+  .subtitle {
+    font-size: 1.5rem;
+  }
+}

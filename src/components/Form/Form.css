@@ -1,0 +1,23 @@
+.form-title {
+    text-align: center; 
+    margin-top: 4%;
+  }
+  
+  form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    margin: 0; 
+  }
+  
+  .user-input-box,
+  .gender-category,
+  .form-submit-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1em; 
+  }
+  
