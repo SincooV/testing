@@ -13,7 +13,7 @@ function Form() {
         confirmPassword: '',
         gender: '',
     });
-    const [files, setFiles] = useState([]);
+    const [message, setMessage] = useState('');
 
     const togglePasswordVisibility = () => {
         setShowPassword((prev) => !prev);
@@ -28,23 +28,47 @@ function Form() {
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
 
-    const handleFileChange = (e) => {
-        const selectedFiles = Array.from(e.target.files);
-        setFiles(selectedFiles);
-    };
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
         if (formData.password !== formData.confirmPassword) {
             alert("As senhas não coincidem!");
             return;
         }
-        if (!formData.fullName || !formData.username || !formData.email || !formData.phoneNumber || !formData.password) {
+        
+        if (!formData.fullName || !formData.username || !formData.email || !formData.phoneNumber || !formData.password || !formData.gender) {
             alert("Por favor, preencha todos os campos obrigatórios.");
             return;
         }
-        console.log("Dados do formulário:", formData);
-        console.log("Arquivos selecionados:", files);
+
+        try {
+            const response = await fetch('http://localhost:5000/api/users/register', { 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                setMessage(data.message);
+                setFormData({
+                    fullName: '',
+                    username: '',
+                    email: '',
+                    phoneNumber: '',
+                    password: '',
+                    confirmPassword: '',
+                    gender: '',
+                });
+            } else {
+                setMessage(data.error);
+            }
+        } catch (error) {
+            setMessage('Erro ao conectar ao servidor');
+        }
     };
 
     return (
@@ -58,7 +82,7 @@ function Form() {
                             type="text"
                             id="fullName"
                             name="fullName"
-                            placeholder="Enter Full Name"
+                            placeholder="Digite seu nome completo"
                             value={formData.fullName}
                             onChange={handleInputChange}
                             required
@@ -82,7 +106,7 @@ function Form() {
                             type="email"
                             id="email"
                             name="email"
-                            placeholder="Enter Email"
+                            placeholder="Digite seu e-mail"
                             value={formData.email}
                             onChange={handleInputChange}
                             required
@@ -94,7 +118,7 @@ function Form() {
                             type="text"
                             id="phoneNumber"
                             name="phoneNumber"
-                            placeholder="Enter Phone Number"
+                            placeholder="Digite seu telefone"
                             value={formData.phoneNumber}
                             onChange={handleInputChange}
                             required
@@ -106,7 +130,7 @@ function Form() {
                             type={showPassword ? "text" : "password"}
                             id="password"
                             name="password"
-                            placeholder="Enter Password"
+                            placeholder="Digite sua senha"
                             value={formData.password}
                             onChange={handleInputChange}
                             required
@@ -121,7 +145,7 @@ function Form() {
                             type={showConfirmPassword ? "text" : "password"}
                             id="confirmPassword"
                             name="confirmPassword"
-                            placeholder="Confirm Password"
+                            placeholder="Confirme sua senha"
                             value={formData.confirmPassword}
                             onChange={handleInputChange}
                             required
@@ -147,21 +171,10 @@ function Form() {
                         <option value="other">Outro</option>
                     </select>
                 </div>
-                <div className="user-input-box">
-                    <label htmlFor="files">Upload de Currículos (PDF, DOC, DOCX)</label>
-                    <input
-                        type="file"
-                        id="files"
-                        name="files"
-                        accept=".pdf, .doc, .docx"
-                        onChange={handleFileChange}
-                        multiple
-                        required
-                    />
-                </div>
                 <div className="form-submit-btn">
                     <input type="submit" value="Enviar" />
                 </div>
+                {message && <p>{message}</p>}
             </form>
         </>
     );
